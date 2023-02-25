@@ -1,5 +1,5 @@
 # Tactical Service Stack
-[**307th Expedionary Signal Batallion-Enhanced**](https://www.facebook.com/307ESB/)
+[**307th Expeditionary Signal Batallion-Enhanced**](https://www.facebook.com/307ESB/)
 
 TSS provides a number of web based services at the edge of the tactical network. This in turn delivers applications with lower latency and does not require software installed on the end user device. Utilizing a [headless](https://en.wikipedia.org/wiki/Headless_computer) [Linux](https://en.wikipedia.org/wiki/Linux) [bare metal](https://en.wikipedia.org/wiki/Bare-metal_server) host operating system and [Docker containers](https://en.wikipedia.org/wiki/Docker_(software)), the TSS can even run off a lifecycled laptop such as Dell 5580.
 | Service                                                                         | Description                                                 |
