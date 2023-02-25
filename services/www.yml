@@ -25,3 +25,17 @@ services:
       resources:
         limits:
           memory: 8g
+  test_www:
+    container_name: ${COMPOSE_PROJECT_NAME}_test_www
+    hostname: test_www
+    networks:
+      - servers
+    build:
+      context: ./app/test_www
+    volumes:
+      - $TEST_WWW_CONFIG_DIR:/usr/share/nginx/html:ro
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8g

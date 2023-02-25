@@ -2,7 +2,6 @@ services:
   rproxy:
     container_name: ${COMPOSE_PROJECT_NAME}_rproxy
     hostname: rproxy
-    #network_mode: host
     networks:
       - servers
     build:
@@ -20,8 +19,6 @@ services:
       - $SRV_IP_5:443:443
       - $SRV_IP_6:80:80
       - $SRV_IP_6:443:443
-      - $SRV_IP_7:80:80
-      - $SRV_IP_7:443:443
       - $SRV_IP_8:80:80
       - $SRV_IP_8:443:443
     volumes:
@@ -34,7 +31,6 @@ services:
   gproxy:
     container_name: ${COMPOSE_PROJECT_NAME}_gproxy
     hostname: gproxy
-    #network_mode: host
     networks:
       - servers
     build:
@@ -42,6 +38,23 @@ services:
     ports:
       - $SRV_IP_9:80:80
       - $SRV_IP_9:443:443
+    volumes:
+      - $CERTBOT_DATA_DIR_ETC:/etc/letsencrypt:ro
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8g
+  test_proxy:
+    container_name: ${COMPOSE_PROJECT_NAME}_test_proxy
+    hostname: tproxy
+    networks:
+      - servers
+    build:
+      context: ./app/test_proxy
+    ports:
+      - $SRV_IP_7:80:80
+      - $SRV_IP_7:443:443
     volumes:
       - $CERTBOT_DATA_DIR_ETC:/etc/letsencrypt:ro
     restart: unless-stopped
