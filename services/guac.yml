@@ -4,8 +4,8 @@ services:
     hostname: guacd
     networks:
       - servers
-    image: ghcr.io/linuxserver/guacd:latest
-    #image: guacamole/guacd
+    #image: ghcr.io/linuxserver/guacd:latest
+    image: guacamole/guacd
       #https://hub.docker.com/r/guacamole/guacd
     restart: unless-stopped
     deploy:
@@ -13,8 +13,8 @@ services:
         limits:
           memory: 8g
   guac_db:
-    depends_on:
-      - guacd
+    #depends_on:
+      #- guacd
     container_name: prod_guac_db
     hostname: guac_db
     networks:
@@ -36,9 +36,9 @@ services:
         limits:
           memory: 8g
   guac:
-    depends_on:
-      - guacd
-      - guac_db
+    #depends_on:
+      #- guacd
+      #- guac_db
     container_name: prod_guac
     hostname: guac
     networks:
