@@ -1,0 +1,19 @@
+services:
+  wireshark:
+    container_name: ${COMPOSE_PROJECT_NAME}_wireshark
+    network_mode: host
+    image: linuxserver/wireshark:latest
+      #https://hub.docker.com/r/linuxserver/wireshark
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    env_file:
+      - env/linuxserver.env
+    volumes:
+       - $WIRESHARK_DATA_DIR:/config
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 8g
