@@ -15,6 +15,8 @@ services:
       #- SSH_KEY=[public_key]
     volumes:
       - $DEVBOX_DATA_DIR:/app
+    cap_add:
+      - NET_ADMIN
     deploy:
       resources:
         limits:
